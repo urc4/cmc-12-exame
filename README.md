@@ -1,6 +1,6 @@
 # README
 <h1 align="center">
-☠:video_game:<br>Exame CMC-12
+:video_game:<br>Exame CMC-12
 </h1>
 
 ## 📚 Introdução
