@@ -5,13 +5,13 @@ function controlador = projetarControladorTanque1Analitico(requisitos, planta)
 % requisitos.tr: requisito de tempo de subida de 0 a 100 por cento.
 % requisitos.Mp: requisito de sobressinal.
 % A struct planta contem os parametros da planta e pode ser obtida atraves
-% de planta = obterPlantaReguladorNiveis().
+% de planta = obterPlanta().
 % A saida da funcao eh a struct controlador:
 % controlador.Ki: ganho do termo integrativo do controlador de altura PID.
 % controlador.Kp: ganho do termo proporcional do controlador de altura PID.
 % controlador.Kd: ganho do termo derivativo do controlador de altura PID.
 
-R1 = planta.tanque_1.R; A1 = planta.tanque_1.A;
+R1 = planta.R1; A1 = planta.tanque_1.A;
 tr = requisitos.tanque_1.tr; Mp = requisitos.tanque_1.Mp; 
 
 xi = -log(Mp)/sqrt(pi^2 + (log(Mp))^2);
