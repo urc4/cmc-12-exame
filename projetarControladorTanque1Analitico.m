@@ -1,6 +1,6 @@
-function controlador = projetarControladorAnaliticoTanque2(requisitos, planta)
-% controlador = projetarControladorAnaliticoTanque1(requisitos, planta)
-% projeta o controlador de altura do tanque 2 atraves de um metodo analitico. A
+function controlador = projetarControladorTanque1Analitico(requisitos, planta)
+% controlador = projetarControladorTanque1Analitico(requisitos, planta)
+% projeta o controlador de altura do tanque 1 atraves de um metodo analitico. A
 % struct requisitos eh:
 % requisitos.tr: requisito de tempo de subida de 0 a 100 por cento.
 % requisitos.Mp: requisito de sobressinal.
@@ -11,12 +11,15 @@ function controlador = projetarControladorAnaliticoTanque2(requisitos, planta)
 % controlador.Kp: ganho do termo proporcional do controlador de altura PID.
 % controlador.Kd: ganho do termo derivativo do controlador de altura PID.
 
-xi = 2;
-wn = 3;
+R1 = planta.tanque_1.R; A1 = planta.tanque_1.A;
+tr = requisitos.tanque_1.tr; Mp = requisitos.tanque_1.Mp; 
+
+xi = -log(Mp)/sqrt(pi^2 + (log(Mp))^2);
+wn = (pi - acos(xi))/(tr*sqrt(1-xi^2));
 
 Kd = 1;
-Kp = 4*Kd;
-Ki = 5*Kd;
+Ki = ((R1*Kd + A1*R1)*wn^2)/R1;
+Kp = (2*(R1*Kd + A1*R1)*xi*wn - 1)/R1;
 
 
 % algum termo vai ter que ficar em funcao de outro entao teria que tomar um valor
@@ -26,7 +29,5 @@ Ki = 5*Kd;
 controlador.Ki = Ki;
 controlador.Kp = Kp;
 controlador.Kd = Kd;
-
-
 
 end
