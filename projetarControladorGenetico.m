@@ -1,4 +1,4 @@
-function [controlador,Jval] = projetarControladorGenetico(requisitos,planta,display_mode)
+function [controlador,Jval,EXITFLAG,funccount] = projetarControladorGenetico(requisitos,planta,display_mode)
 
 % Define a função de custo
 J = @(K)funcaoCustoTrMpGenerica(requisitos,planta,{'Ki','Kp','Kd'},@obterGf,true,K);
@@ -9,7 +9,8 @@ MaxGenerations = 30;
 
 % Otimização
 options = optimoptions('ga','PopulationSize',PopSize,'MaxGenerations',MaxGenerations, 'Display',display_mode); %ver myfun aqui
-[KOtimo,Jval] = ga(J,3,-eye(3),zeros(3,1),[],[],[],[],[],options); %Jval é o valor minimo da função de custo
+[KOtimo, Jval, EXITFLAG, OUTPUT] = ga(J,3,-eye(3),zeros(3,1),[],[],[],[],[],options); %Jval é o valor minimo da função de custo
+funccount = OUTPUT.funccount;
 
 % Extrai os parâmetros ótimos
 controlador.Ki = KOtimo(1);

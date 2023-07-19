@@ -1,4 +1,4 @@
-function controlador = projetarControladorTunando(requisitos, planta,display_mode)
+function [controlador,Jval,EXITFLAG,funccount] = projetarControladorTunando(requisitos, planta,display_mode)
 % controlador = projetarControladorTunado(requisitos, planta)
 % projeta o controlador de altura do tanque atraves de um metodo analitico. A
 % struct requisitos eh:
@@ -12,6 +12,7 @@ function controlador = projetarControladorTunando(requisitos, planta,display_mod
 % controlador.Ki: ganho do termo integrativo do controlador de altura PID.
 % controlador.Kp: ganho do termo proporcional do controlador de altura PID.
 % controlador.Kd: ganho do termo derivativo do controlador de altura PID.
+% NOTA: As saidas Jval, EXITFLAG e funccount estão presentes por compatibiliadade.
 
 R1 = planta.R1; A1 = planta.tanque_1.A;
 R2 = planta.R2; A2 = planta.tanque_2.A;
@@ -40,4 +41,8 @@ controlador.Ki = Ki;
 controlador.Kp = Kp;
 controlador.Kd = Kd;
 controlador.a = 100;
+
+Jval = NaN;
+EXITFLAG = NaN;
+funccount = NaN;
 end

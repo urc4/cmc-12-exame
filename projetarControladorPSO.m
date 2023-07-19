@@ -1,4 +1,4 @@
-function [controlador,Jval] = projetarControladorPSO (requisitos,planta,display_mode)
+function [controlador,Jval,EXITFLAG,funccount] = projetarControladorPSO (requisitos,planta,display_mode)
 
 % Define a função de custo
 J = @(K) funcaoCustoTrMpGenerica(requisitos,planta,{'Ki','Kp','Kd'},@obterGf,true,K);
@@ -16,7 +16,8 @@ ub = [10 10 10];
 
 % Otimização
 options = optimoptions('particleswarm', 'SwarmSize', num_particles, 'MaxIterations', max_iterations, 'Display', display_mode);
-[KOtimo, Jval] = particleswarm(J, 3, lb, ub, options);
+[KOtimo, Jval, EXITFLAG, OUTPUT] = particleswarm(J, 3, lb, ub, options);
+funccount = OUTPUT.funccount;
 
 % Extrai os parâmetros ótimos
 controlador.Ki = KOtimo(1);

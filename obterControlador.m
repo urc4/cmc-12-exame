@@ -1,5 +1,5 @@
-function controlador = obterControlador(tipo_de_projeto, display_mode)
-% controlador = obterControladorAnalitico(requisitos, planta)
+function controlador = obterControlador(tipo_de_projeto, requisitos, planta, display_mode)
+% controlador = obterControlador(requisitos, planta, display_mode)
 % A
 % struct requisitos eh:
 % requisitos.tr: requisito de tempo de subida de 0 a 100 por cento.
@@ -11,9 +11,7 @@ function controlador = obterControlador(tipo_de_projeto, display_mode)
 % controlador.Kp: ganho do termo proporcional do controlador de altura PID.
 % controlador.Kd: ganho do termo derivativo do controlador de altura PID.
 
-planta = obterPlanta();
-requisitos = obterRequisitos();
 nome_da_funcao = ['projetarControlador', tipo_de_projeto];
-controlador = eval([nome_da_funcao, '(requisitos,planta,', display_mode, ')'])
+[controlador,Jval,EXITFLAG,funccount] = eval([nome_da_funcao, '(requisitos,planta,', display_mode, ')'])
 
 end
