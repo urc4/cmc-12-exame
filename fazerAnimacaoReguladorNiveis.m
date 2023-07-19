@@ -1,8 +1,5 @@
 function fazerAnimacaoReguladorNiveis(simulacao, planta)
 
-% Resultados da simulacao
-% Por enquanto vamos gerar dados
-
 % Obter resultados da simulacao
 % t = simulacao.h2r.time;
 % h2r = simulacao.h2r.signals.values;
@@ -23,7 +20,8 @@ phi_1 = abs(cos(t));
 phi_2 = abs(sin(t));
 delta_h1 = phi_in - phi_1;
 delta_h2 = phi_1 - phi_2;
-
+h1 = abs(phi_in - phi_1);
+h2 = abs(phi_1 - phi_2);
 % Iniciar ambiente de animacao
 figure;
 maxX = 0.5*(planta.tanque_1.largura + planta.tanque_2.largura);
@@ -52,13 +50,13 @@ for i = 1:length(t)
     rectangle('Position', [0.5*planta.tanque_1.largura + planta.tanque_2.largura, minY + 0.1*planta.tanque_2.altura, 0.5*planta.tanque_2.largura, 0.1*planta.tanque_2.altura], 'EdgeColor', 'black');
     
     % Tanque 1
-    rectangle('Position', [minX, 0, planta.tanque_1.largura, planta.tanque_1.altura+delta_h1(i)], 'FaceColor', 'blue');
-    % rectangle('Position', [minX, 0, planta.tanque_1.largura, h1(i)], 'FaceColor', 'blue');
+    %rectangle('Position', [minX, 0, planta.tanque_1.largura, planta.tanque_1.altura+delta_h1(i)], 'FaceColor', 'blue');
+    rectangle('Position', [minX, 0, planta.tanque_1.largura, h1(i)], 'FaceColor', 'blue');
     rectangle('Position', [minX, 0, planta.tanque_1.largura, planta.tanque_1.altura], 'EdgeColor', 'black');
     
     % Tanque 2
-    rectangle('Position', [0.5*planta.tanque_1.largura, minY + 0.1*planta.tanque_2.altura, planta.tanque_2.largura, planta.tanque_2.altura+delta_h2(i)], 'FaceColor', 'blue');
-    % rectangle('Position', [0.5*planta.tanque_1.largura, minY + 0.1*planta.tanque_2.altura, planta.tanque_2.largura, h2(i)], 'FaceColor', 'blue');
+    %rectangle('Position', [0.5*planta.tanque_1.largura, minY + 0.1*planta.tanque_2.altura, planta.tanque_2.largura, planta.tanque_2.altura+delta_h2(i)], 'FaceColor', 'blue');
+    rectangle('Position', [0.5*planta.tanque_1.largura, minY + 0.1*planta.tanque_2.altura, planta.tanque_2.largura, h2(i)], 'FaceColor', 'blue');
     rectangle('Position', [0.5*planta.tanque_1.largura, minY + 0.1*planta.tanque_2.altura, planta.tanque_2.largura, planta.tanque_2.altura], 'EdgeColor', 'black');
     
     

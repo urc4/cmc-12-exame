@@ -1,4 +1,4 @@
-function controlador = projetarControladorTunando(requisitos, planta)
+function controlador = projetarControladorAnalitico(requisitos, planta)
 % controlador = projetarControladorTanqueZieglerNichols(requisitos, planta)
 % projeta o controlador de altura do tanque atraves de um metodo analitico. A
 % struct requisitos eh:
