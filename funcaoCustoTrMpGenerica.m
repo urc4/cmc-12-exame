@@ -9,7 +9,7 @@ function J = funcaoCustoTrMpGenerica(requisitos, planta, params_controlador, fun
 % planta:
 %   A struct planta contem os parametros da planta e pode ser obtida atraves
 %   de planta = obterPlantaServoPosicao().
-%   params_controlador:
+% params_controlador:
 %   cell array com nomes dos campos do controlador
 %   Pode ser obtida e.g. via fieldnames(minha_struct_controlador)
 % funcao_obter_Gf:
@@ -28,15 +28,16 @@ function J = funcaoCustoTrMpGenerica(requisitos, planta, params_controlador, fun
 for k=1:numel(params_controlador)
     controlador.(params_controlador{k}) = parametros(k);
 end
+controlador.a = 100;
 
 % Implementar
 Gf = funcao_obter_Gf(controlador, planta);
 sinfo = stepinfo(Gf);
 
 if normalize == true
-    J = (sinfo.RiseTime/requisitos.tr - 1)^2 + (sinfo.Overshoot/requisitos.Mp - 1)^2;
+    J = (sinfo.RiseTime/requisitos.tr - 1)^2 + (sinfo.Overshoot/(100*requisitos.Mp) - 1)^2;
 else
-    J = (sinfo.RiseTime - requisitos.tr)^2 + (sinfo.Overshoot - requisitos.Mp)^2;
+    J = (sinfo.RiseTime - requisitos.tr)^2 + (sinfo.Overshoot/100 - requisitos.Mp)^2;
 end
 
 end
