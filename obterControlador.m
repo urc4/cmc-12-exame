@@ -1,4 +1,4 @@
-function controlador = obterControlador(tipo_de_projeto, requisitos, planta, display_mode)
+function [controlador,Jval,EXITFLAG,funccount] = obterControlador(tipo_de_projeto, requisitos, planta, display_mode)
 % controlador = obterControlador(requisitos, planta, display_mode)
 % A
 % struct requisitos eh:
