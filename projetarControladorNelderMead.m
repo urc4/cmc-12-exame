@@ -1,16 +1,16 @@
-function [fval,controlador] = projetarControladorNelderMead(requisitos, planta)
+function [controlador,Jval] = projetarControladorNelderMead(requisitos, planta)
 
 % chute inicial
 controlador0 = projetarControladorTunando(requisitos, planta);
 % otimizacao
-x0 = [controlador0.Ki, controlador0.Kp, controlador0.Kd];
+K0 = [controlador0.Ki, controlador0.Kp, controlador0.Kd];
 opcoes = optimset('Display', 'iter');
-J = @(x) funcaoCustoTrMpGenerica(requisitos, planta, {'Ki','Kp','Kd'}, @obterGf, true, x);
-xOtimo = fminsearch(J, x0, opcoes);
-fval = J(xOtimo);
-controlador.Ki = xOtimo(1);
-controlador.Kp = xOtimo(2);
-controlador.Kd = xOtimo(3);
+J = @(K) funcaoCustoTrMpGenerica(requisitos, planta, {'Ki','Kp','Kd'}, @obterGf, true, K);
+KOtimo = fminsearch(J, K0, opcoes);
+Jval = J(xOtimo);
+controlador.Ki = KOtimo(1);
+controlador.Kp = KOtimo(2);
+controlador.Kd = KOtimo(3);
 controlador.a = 100;
 
 end

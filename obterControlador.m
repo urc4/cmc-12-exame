@@ -1,4 +1,4 @@
-function controlador  = obterControladorNelderMead(requisitos, planta)
+function controlador = obterControlador(tipo_de_projeto)
 % controlador = obterControladorAnalitico(requisitos, planta)
 % A
 % struct requisitos eh:
@@ -14,7 +14,9 @@ function controlador  = obterControladorNelderMead(requisitos, planta)
 % controlador.tanque_2.Kp: ganho do termo proporcional do controlador de altura PID.
 % controlador.tanque_2.Kd: ganho do termo derivativo do controlador de altura PID.
 
-controlador.tanque_1 = projetarControladorTanque1NelderMead(requisitos, planta);
-controlador.tanque_2 = projetarControladorTanque2NelderMead(requisitos, planta);
+planta = obterPlanta();
+requisitos = obterRequisitos();
+nome_da_funcao = ['projetarControlador', tipo_de_projeto];
+controlador = eval([nome_da_funcao, '(requisitos,planta)']);
 
 end
