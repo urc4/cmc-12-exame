@@ -1,5 +1,5 @@
 requisitos = obterRequisitos();
 planta = obterPlanta();
-controlador = obterControladorAnalitico(requisitos, planta);
+controlador = projetarControladorTunando(requisitos, planta);
 avaliarMalhasTanques(controlador, planta)
 

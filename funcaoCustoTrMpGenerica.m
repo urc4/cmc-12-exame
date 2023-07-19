@@ -9,7 +9,7 @@ function J = funcaoCustoTrMpGenerica(requisitos, planta, params_controlador, fun
 % planta:
 %   A struct planta contem os parametros da planta e pode ser obtida atraves
 %   de planta = obterPlantaServoPosicao().
-% params_controlador:
+%   params_controlador:
 %   cell array com nomes dos campos do controlador
 %   Pode ser obtida e.g. via fieldnames(minha_struct_controlador)
 % funcao_obter_Gf:
