@@ -32,7 +32,7 @@ controlador.a = 100;
 
 % Implementar
 Gf = funcao_obter_Gf(controlador, planta);
-sinfo = stepinfo(Gf);
+sinfo = stepinfo(Gf, 'RiseTimeLimits', [0, 1]);
 
 if normalize == true
     J = (sinfo.RiseTime/requisitos.tr - 1)^2 + (sinfo.Overshoot/(100*requisitos.Mp) - 1)^2;

@@ -3,19 +3,13 @@ function [controlador,Jval] = projetarControladorNelderMead(requisitos, planta)
 % Define a função de custo
 J = @(K) funcaoCustoTrMpGenerica(requisitos, planta, {'Ki','Kp','Kd'}, @obterGf, true, K);
 
-% Define a função auxiliar que penaliza ganhos negativos
-Jaux = @(K) J(K) + sum(max(-K, 0));
-
 % Chute inicial
 controlador0 = projetarControladorTunando(requisitos, planta);
 
 % Otimização
 K0 = [controlador0.Ki, controlador0.Kp, controlador0.Kd];
 opcoes = optimset('Display', 'iter');
-KOtimo = fminsearch(Jaux, K0, opcoes);
-
-% Transforma ganho negativo em 0
-KOtimo = max(KOtimo, 0);
+KOtimo = fminsearch(J, K0, opcoes);
 
 % Extrai os parâmetros ótimos
 Jval = J(KOtimo);
