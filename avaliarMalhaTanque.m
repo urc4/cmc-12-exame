@@ -1,4 +1,4 @@
-function avaliarMalhasTanques(controlador, planta)
+function avaliarMalhaTanque(controlador, planta)
 % avaliarMalhaTanque1(controlador, planta) avalia a malha de
 % altura do tanque 1 para verificar atendimento aos requisitos.
 % A struct controlador eh dada por:
