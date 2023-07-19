@@ -15,7 +15,6 @@ function controlador = projetarControladorTunando(requisitos, planta,display_mod
 
 R1 = planta.R1; A1 = planta.tanque_1.A;
 R2 = planta.R2; A2 = planta.tanque_2.A;
-tr = requisitos.tr; Mp = requisitos.Mp;
 
 s = tf('s');
 G1 = R1/(A1*R1*s + 1);
@@ -29,11 +28,11 @@ porcentagem = 0.632*y_inf;
 indice_porcentagem = min(find(y >= porcentagem, 1));
 
 Tp = t(indice_porcentagem);
-Td_val = t(min(find(y > 0.1) - t(1)));
+T_DT = t(min(find(y > 0.1) - t(1)));
 lambda = Tp/3;
-Kp = (lambda / Tp) * (1 + 0.5 * Td_val / Tp);
-Ti = lambda * (1 + 0.5 * Td_val / Tp);
-Td = lambda * (0.125 * Td_val / Tp);
+Kp = (lambda / Tp) * (1 + 0.5 * T_DT / Tp);
+Ti = lambda * (1 + 0.5 * T_DT / Tp);
+Td = lambda * (0.125 * T_DT / Tp);
 Kd = Kp*Td;
 Ki = Kp/Ti;
 
