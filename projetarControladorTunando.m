@@ -1,11 +1,13 @@
-function controlador = projetarControladorTunando(requisitos, planta)
-% controlador = projetarControladorTanqueZieglerNichols(requisitos, planta)
+function controlador = projetarControladorTunando(requisitos, planta,display_mode)
+% controlador = projetarControladorTunado(requisitos, planta)
 % projeta o controlador de altura do tanque atraves de um metodo analitico. A
 % struct requisitos eh:
 % requisitos.tr: requisito de tempo de subida de 0 a 100 por cento.
 % requisitos.Mp: requisito de sobressinal.
 % A struct planta contem os parametros da planta e pode ser obtida atraves
 % de planta = obterPlanta().
+% display_mode está lá por compatibilidade com outros scripts, mas é
+% ignorado
 % A saida da funcao eh a struct controlador:
 % controlador.Ki: ganho do termo integrativo do controlador de altura PID.
 % controlador.Kp: ganho do termo proporcional do controlador de altura PID.

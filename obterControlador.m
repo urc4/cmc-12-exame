@@ -1,4 +1,4 @@
-function controlador = obterControlador(tipo_de_projeto)
+function controlador = obterControlador(tipo_de_projeto, display_mode)
 % controlador = obterControladorAnalitico(requisitos, planta)
 % A
 % struct requisitos eh:
@@ -17,6 +17,6 @@ function controlador = obterControlador(tipo_de_projeto)
 planta = obterPlanta();
 requisitos = obterRequisitos();
 nome_da_funcao = ['projetarControlador', tipo_de_projeto];
-controlador = eval([nome_da_funcao, '(requisitos,planta)']);
+controlador = eval([nome_da_funcao, '(requisitos,planta,', display_mode, ')'])
 
 end
