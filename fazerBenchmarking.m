@@ -71,11 +71,11 @@ end
 figure;
 boxchart(metodos, log(Jvals_all));
 set(gca, 'FontSize', 14);
-title("log_e(J(x_{opt})");
+title("log_e(J(x_{opt}))");
 print -dpng -r400 logJopts.png % para usuarios de Word
 print -depsc2 logJopts.eps % para usuarios de LaTeX
 figure;
-boxchart(metodos, log(Jvals_all));
+boxchart(metodos, Jvals_all);
 set(gca, 'FontSize', 14);
 title("J(x_{opt})");
 print -dpng -r400 Jopts.png % para usuarios de Word
