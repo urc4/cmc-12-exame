@@ -1,6 +1,5 @@
 function requisitos  = obterRequisitos(noise)
-% requisitos = obterRequisitos() obtem os requisitos das malhas de altura de tanque 1
-% e malha de altura de tanque 2,
+% requisitos = obterRequisitos() obtem os requisitos da malha de altura 
 
 if noise
     requisitos.tr = 3 + 7*rand; % U[3, 10]
