@@ -1,5 +1,5 @@
 rng(42);  % seed para os numeros aleatorios
-N = 15; % numero de simulações
+N = 20; % numero de simulações
 
 % inicializando listas de métricas
 for metodo = ["NelderMead", "Genetico", "PSO"]
@@ -19,7 +19,7 @@ for i = 1:N
         if EXITFLAG >= 0
             Jvals.(metodo) = [Jvals.(metodo) Jval];
             [~, Gf] = obterMalhaTanque(controlador, planta);
-            info = stepinfo(Gf);
+            info = stepinfo(Gf, "RiseTimeLimits", [0,1]);
             Mps.(metodo) = [Mps.(metodo) abs(requisitos.Mp - info.Overshoot/100)/requisitos.Mp];
             trs.(metodo) = [trs.(metodo) abs(requisitos.tr - info.RiseTime)/requisitos.tr];
             funccounts.(metodo) = [funccounts.(metodo) funccount];
